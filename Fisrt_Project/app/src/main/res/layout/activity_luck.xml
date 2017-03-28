@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ccc_gray"
+    android:clickable="true"
+    tools:context="com.zl.project.fisrt_project.UI.Activity.LuckActivity">
+
+    <include
+        android:id="@+id/luck_title"
+        layout="@layout/base_title_layout" />
+
+    <EditText
+        android:id="@+id/luck_edit"
+        android:layout_width="400px"
+        android:layout_height="80px"
+        android:layout_below="@id/luck_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50px"
+        android:background="@drawable/luck_edit_shape"
+        android:hint="@string/input_name"
+        android:paddingLeft="40px"
+        android:textColor="@color/white"
+        android:textColorHint="@color/ccc_gray" />
+
+    <RadioGroup
+        android:id="@+id/luck_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/luck_edit"
+        android:layout_marginTop="10px"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/luck_rb_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/today" />
+
+        <RadioButton
+            android:id="@+id/luck_rb_tomorrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tomorrow" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/luck_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/luck_rg"
+        android:layout_marginLeft="15px"
+        android:layout_marginTop="10px"
+        android:gravity="left"
+        android:textColor="@color/main_text_cc_blue"
+        android:textSize="28px" />
+
+    <ListView
+        android:id="@+id/luck_list"
+        android:layout_width="650px"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/luck_rg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15px"
+        android:background="@drawable/luck_list_shape" />
+
+    <!--广告位-->
+    <RelativeLayout
+        android:id="@+id/activity_luck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"></RelativeLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

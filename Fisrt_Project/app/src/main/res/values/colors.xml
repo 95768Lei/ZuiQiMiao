@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--首页按钮文字颜色-->
+    <color name="main_text_blue">#1296db</color>
+    <color name="main_text_cc_blue">#7acbf5</color>
+    <color name="main_text_gray">#707070</color>
+    <color name="cc_gray">#ababab</color>
+    <color name="gray">#686767</color>
+    <color name="ccc_gray">#efeded</color>
+    <color name="cc_bg">#a3050505</color>
+    <color name="back">#000</color>
+    <color name="white">#fff</color>
+    <!-- Background color for light CardView. -->
+    <color name="cardview_light_background">#FFFAFAFA</color>
+    <!-- Background color for dark CardView. -->
+    <color name="cardview_dark_background">#FF202020</color>
+    <!-- Shadow color for the first pixels around CardView. -->
+    <color name="cardview_shadow_start_color">#37000000</color>
+    <!-- Shadow color for the furthest pixels around CardView. -->
+    <color name="cardview_shadow_end_color">#03000000</color>
+</resources>

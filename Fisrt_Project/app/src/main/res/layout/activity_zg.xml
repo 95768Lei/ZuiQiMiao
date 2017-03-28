@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_zg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/zg"
+    tools:context="com.zl.project.fisrt_project.UI.Activity.ZGActivity">
+
+    <include
+        android:id="@+id/zg_title"
+        layout="@layout/base_title_layout" />
+
+    <EditText
+        android:id="@+id/zg_edit"
+        android:layout_width="400px"
+        android:layout_height="80px"
+        android:layout_below="@id/zg_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50px"
+        android:background="@drawable/luck_edit_shape"
+        android:hint="@string/input_key"
+        android:paddingLeft="40px"
+        android:textColor="@color/white"
+        android:textColorHint="@color/ccc_gray"
+        android:textSize="32px" />
+
+    <!--广告位-->
+    <RelativeLayout
+        android:id="@+id/zg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"></RelativeLayout>
+
+    <ListView
+        android:id="@+id/zg_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/zg_layout"
+        android:layout_below="@id/zg_edit"
+        android:layout_marginTop="15px"></ListView>
+
+</com.zhy.autolayout.AutoRelativeLayout>

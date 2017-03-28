@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/main_draw_top"
+            android:icon="@mipmap/top"
+            android:title="@string/main_top" />
+
+        <item android:title="@string/main_sh">
+            <menu>
+                <item
+                    android:id="@+id/xh_all"
+                    android:icon="@mipmap/xiaolian"
+                    android:title="@string/xh_dq" />
+
+                <item
+                    android:id="@+id/phone_check"
+                    android:icon="@mipmap/phone1"
+                    android:title="@string/phone_find" />
+
+                <item
+                    android:id="@+id/chat_robot"
+                    android:icon="@mipmap/robot"
+                    android:title="@string/chat" />
+
+                <!--<item-->
+                    <!--android:id="@+id/recreation"-->
+                    <!--android:icon="@mipmap/recreation"-->
+                    <!--android:title="@string/recreation" />-->
+
+                <!--<item-->
+                <!--android:id="@+id/yp_check"-->
+                <!--android:icon="@mipmap/you"-->
+                <!--android:title="@string/yb_find" />-->
+
+                <!--<item-->
+                <!--android:id="@+id/status_check"-->
+                <!--android:icon="@mipmap/sfz1"-->
+                <!--android:title="@string/sf_find" />-->
+            </menu>
+        </item>
+
+        <item android:title="@string/main_zb">
+            <menu>
+                <item
+                    android:id="@+id/luck"
+                    android:icon="@mipmap/xz"
+                    android:title="@string/xz_ys" />
+
+                <item
+                    android:id="@+id/zg_jm"
+                    android:icon="@mipmap/zhou"
+                    android:title="@string/zg_jm" />
+            </menu>
+        </item>
+    </group>
+
+</menu>

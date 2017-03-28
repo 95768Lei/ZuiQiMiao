@@ -1,0 +1,27 @@
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/web_arl"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.zl.project.fisrt_project.UI.Fragment.WebFragment">
+
+    <include
+        android:id="@+id/web_title"
+        layout="@layout/base_title_layout" />
+
+    <ProgressBar
+        android:id="@+id/web_pb"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="5px"
+        android:layout_below="@id/web_title"
+        android:progressDrawable="@drawable/pg" />
+
+    <RelativeLayout
+        android:id="@+id/web_layout"
+        android:layout_below="@id/web_pb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></RelativeLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

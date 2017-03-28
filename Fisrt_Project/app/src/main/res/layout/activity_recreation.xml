@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_recreation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zl.project.fisrt_project.UI.Activity.RecreationActivity">
+
+    <include
+        android:id="@+id/recreation_title"
+        layout="@layout/base_title_layout"/>
+
+</RelativeLayout>

@@ -1,0 +1,42 @@
+<com.zhy.autolayout.AutoRelativeLayout
+    android:id="@+id/phone_arl"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ccc_gray"
+    android:clickable="true">
+
+    <include
+        android:id="@+id/phone_title"
+        layout="@layout/base_title_layout" />
+
+    <EditText
+        android:id="@+id/phone_edit"
+        android:layout_width="400px"
+        android:layout_height="80px"
+        android:layout_below="@id/phone_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50px"
+        android:background="@drawable/luck_edit_shape"
+        android:hint="@string/input_phone"
+        android:paddingLeft="40px"
+        android:textColor="@color/white"
+        android:textColorHint="@color/ccc_gray"
+        android:textSize="32px" />
+
+    <ListView
+        android:id="@+id/phone_list"
+        android:layout_width="650px"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phone_edit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15px"
+        android:background="@drawable/luck_list_shape" />
+
+    <RelativeLayout
+        android:id="@+id/phone_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></RelativeLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

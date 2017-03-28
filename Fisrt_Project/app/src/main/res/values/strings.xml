@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">最奇妙</string>
+    <string name="main_top">头条</string>
+    <string name="main_sh">生活</string>
+    <string name="main_zb">占卜</string>
+    <string name="main_wd">问答</string>
+    <string name="title_name">TitleName</string>
+
+    <string name="phone_find">手机查询</string>
+    <string name="yb_find">邮编查询</string>
+    <string name="sf_find">身份查询</string>
+    <string name="xh_dq">笑话大全</string>
+    <string name="xz_ys">星座运势</string>
+    <string name="zg_jm">周公解梦</string>
+    <string name="action_settings">Settings</string>
+    <string name="today">今天运气</string>
+    <string name="tomorrow">明天运气</string>
+    <string name="input_name">请输入星座</string>
+    <string name="input_key">请输入关键词</string>
+    <string name="input_phone">请输入手机号</string>
+    <string name="ok">确定</string>
+    <string name="cx">查询</string>
+    <string name="chat">聊天机器人</string>
+    <string name="recreation">娱乐八卦</string>
+    <string name="launch_text">点击跳过</string>
+    <string name="no_data">这里没有内容了，去其他页面看看吧.</string>
+
+    <string name="content">我女朋友气跑了＂\r\n＂怎么回事？严重吗？你怎么着她了？＂\r\n＂不严重，我只是很久没用了</string>
+    <string name="date">2014-12-17 19:13:57</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>

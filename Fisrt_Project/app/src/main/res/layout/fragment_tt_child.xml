@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/tt_child_srl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ccc_gray">
+
+        <ListView
+            android:id="@+id/tt_child_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/white"
+            android:dividerHeight="0dp"></ListView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/child_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:indeterminateDrawable="@drawable/pro_rotate"
+        android:visibility="gone" />
+
+    <!--占位图-->
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/tt_child_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/tt_child_image"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tt_child_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10px"
+            android:text="@string/no_data"
+            android:textColor="@color/back"
+            android:textSize="32px" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</RelativeLayout>

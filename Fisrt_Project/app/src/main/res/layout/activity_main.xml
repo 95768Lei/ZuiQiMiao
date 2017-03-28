@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_draw"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!--主题内容布局-->
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/main_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            app:tabIndicatorColor="@color/white"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/cc_gray"></android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/main_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/main_tab"></android.support.v4.view.ViewPager>
+
+        <RelativeLayout
+            android:id="@+id/main_rl_share"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="30px"
+            android:layout_marginRight="30px"
+            android:background="@drawable/main_share_bg_selector"
+            android:padding="8px">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/ic_menu_share" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/main_parent_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </RelativeLayout>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <!--侧滑菜单-->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/main_nv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/meun_heard"
+        app:menu="@menu/main_draw_menu"></android.support.design.widget.NavigationView>
+</android.support.v4.widget.DrawerLayout>
