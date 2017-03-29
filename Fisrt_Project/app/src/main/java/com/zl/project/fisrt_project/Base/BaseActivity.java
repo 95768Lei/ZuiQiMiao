@@ -120,15 +120,13 @@ public abstract class BaseActivity extends AutoLayoutActivity implements View.On
 
     /**
      * 分享
-     *
-     * @param appName
      */
-    protected void share(String appName) {
+    protected void share() {
         Intent share_intent = new Intent();
         share_intent.setAction(Intent.ACTION_SEND);
         share_intent.setType("text/plain");
         share_intent.putExtra(Intent.EXTRA_SUBJECT, "f分享");
-        share_intent.putExtra(Intent.EXTRA_TEXT, "亲 我刚做了一款应用 支持一下吧:" + appName);
+        share_intent.putExtra(Intent.EXTRA_TEXT, "大兄弟呀，我做了一款软件帮忙看看怎么样呀，你可以去魅族市场和应用宝下载，快去看看吧!");
         share_intent = Intent.createChooser(share_intent, "分享");
         startActivity(share_intent);
     }
@@ -138,7 +136,6 @@ public abstract class BaseActivity extends AutoLayoutActivity implements View.On
      */
     protected void setBlackAnimation() {
         finish();
-        overridePendingTransition(R.anim.fixation, R.anim.rigth_in_anim);
     }
 
     @Override

@@ -13,6 +13,7 @@
     <color name="ccc_gray">#efeded</color>
     <color name="cc_bg">#a3050505</color>
     <color name="back">#000</color>
+    <color name="blue">#1e6cf2</color>
     <color name="white">#fff</color>
     <!-- Background color for light CardView. -->
     <color name="cardview_light_background">#FFFAFAFA</color>

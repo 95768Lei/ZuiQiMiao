@@ -42,6 +42,7 @@ public class ImageUtils {
                 load(url).
                 placeholder(R.mipmap.loading).
                 crossFade().
+                centerCrop().
                 diskCacheStrategy(DiskCacheStrategy.ALL).
                 into(imageView);
     }

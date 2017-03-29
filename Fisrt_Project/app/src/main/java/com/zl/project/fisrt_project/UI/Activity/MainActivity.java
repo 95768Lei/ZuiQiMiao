@@ -1,18 +1,23 @@
 package com.zl.project.fisrt_project.UI.Activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.zl.project.fisrt_project.Base.BaseActivity;
 import com.zl.project.fisrt_project.R;
@@ -35,7 +40,8 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
     private ViewPager tt_pager;
     private FragmentStatePagerAdapter adapter;
     private List<Fragment> mList = new ArrayList<>();
-    private RelativeLayout fab_share;
+    private FloatingActionButton fab_share;
+    private Toolbar main_toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +59,20 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
     @Override
     public void initView() {
         setContentView(R.layout.activity_main);
+        main_toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        main_toolbar.setNavigationIcon(R.mipmap.app_icon);
+        main_toolbar.setTitle(R.string.app_name);
+        main_toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        setSupportActionBar(main_toolbar);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         setDarkColor(R.color.colorPrimaryDark);
         nv = (NavigationView) findViewById(R.id.main_nv);
         draw = (DrawerLayout) findViewById(R.id.main_draw);
-        fab_share = (RelativeLayout) findViewById(R.id.main_rl_share);
+        fab_share = (FloatingActionButton) findViewById(R.id.main_rl_share);
         nv.setItemIconTintList(null);
 
         tt_tab = (TabLayout) findViewById(R.id.main_tab);
@@ -144,16 +160,18 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
                     case R.id.zg_jm:
                         openZGActivity();
                         break;
-//                    //娱乐八卦
-//                    case R.id.recreation:
-//                        openRecreationActivity();
-//                        break;
 
                 }
                 return true;
             }
         });
 
+        main_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                draw.openDrawer(Gravity.LEFT);
+            }
+        });
         fab_share.setOnClickListener(this);
     }
 
@@ -163,7 +181,7 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
         switch (view.getId()) {
             //分享文本
             case R.id.main_rl_share:
-                share(getResources().getString(R.string.app_name));
+                share();
                 break;
         }
     }
@@ -194,7 +212,6 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
             @Override
             public void run() {
                 startActivity(new Intent(mActivity, XHActivity.class));
-                overridePendingTransition(R.anim.rigth_out_anim, R.anim.fixation);
             }
         }, 200);
     }
@@ -208,7 +225,6 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
             @Override
             public void run() {
                 startActivity(new Intent(mActivity, LuckActivity.class));
-                overridePendingTransition(R.anim.rigth_out_anim, R.anim.fixation);
             }
         }, 200);
     }
@@ -222,21 +238,6 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
             @Override
             public void run() {
                 startActivity(new Intent(mActivity, ZGActivity.class));
-                overridePendingTransition(R.anim.rigth_out_anim, R.anim.fixation);
-            }
-        }, 200);
-    }
-
-    /**
-     * 打开娱乐八卦页面
-     */
-    private void openRecreationActivity() {
-        draw.closeDrawers();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(new Intent(mActivity, RecreationActivity.class));
-                overridePendingTransition(R.anim.rigth_out_anim, R.anim.fixation);
             }
         }, 200);
     }

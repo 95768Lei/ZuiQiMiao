@@ -4,17 +4,14 @@ package com.zl.project.fisrt_project.UI.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 
 import com.alibaba.fastjson.JSON;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.zhy.autolayout.AutoRelativeLayout;
 import com.zl.project.fisrt_project.Base.BaseFragment;
 import com.zl.project.fisrt_project.Mode.TtBean;
@@ -22,6 +19,7 @@ import com.zl.project.fisrt_project.R;
 import com.zl.project.fisrt_project.UI.MyAdapter.TtChildAdapter;
 import com.zl.project.fisrt_project.Utils.API;
 import com.zl.project.fisrt_project.Utils.HttpUtils;
+import com.zl.project.fisrt_project.Utils.OnRecyclerItemClickListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,9 +38,7 @@ public class TtChildFragment extends BaseFragment {
     private List<TtBean> mList = new ArrayList<>();
     private Handler mHandler = new Handler();
     private TtChildAdapter mAdapter;
-    private ListView listView;
-    private SwipeRefreshLayout srl;
-    private ProgressBar child_pb;
+    private XRecyclerView listView;
     private List<TtBean> dataList;
     private AutoRelativeLayout layout;
 
@@ -90,44 +86,26 @@ public class TtChildFragment extends BaseFragment {
 
     private void initListener() {
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mAdapter.setOnRecyclerItemClickListener(new OnRecyclerItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(int position) {
                 if (listener != null) {
-                    listener.OnItemClick(mList.get(i).getUrl());
+                    listener.OnItemClick(mList.get(position).getUrl());
                 }
             }
         });
 
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                switch (scrollState) {
-                    // 当不滚动时
-                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
-                        // 判断滚动到底部
-                        if (view.getLastVisiblePosition() == (view.getCount() - 1)) {
-                            child_pb.setVisibility(View.VISIBLE);
-                            setData_8();
-                        }
-                        break;
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-            }
-        });
-
-        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        listView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
                 getNetWorkData();
             }
+
+            @Override
+            public void onLoadMore() {
+                setData_8();
+            }
         });
-
-
     }
 
     /**
@@ -136,13 +114,13 @@ public class TtChildFragment extends BaseFragment {
      * @param view
      */
     private void initView(View view) {
-        listView = (ListView) view.findViewById(R.id.tt_child_list);
-        srl = (SwipeRefreshLayout) view.findViewById(R.id.tt_child_srl);
-        child_pb = (ProgressBar) view.findViewById(R.id.child_pb);
+        listView = (XRecyclerView) view.findViewById(R.id.tt_child_list);
+        LinearLayoutManager manager = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
+        listView.setLayoutManager(manager);
+
         layout = (AutoRelativeLayout) view.findViewById(R.id.tt_child_layout);
-        srl.setColorSchemeResources(R.color.colorPrimaryDark);
         //初始化适配器
-        mAdapter = new TtChildAdapter(mActivity, this, mList);
+        mAdapter = new TtChildAdapter(mActivity, mList, this);
         listView.setAdapter(mAdapter);
     }
 
@@ -156,7 +134,7 @@ public class TtChildFragment extends BaseFragment {
      * 联网获取数据
      */
     private void getNetWorkData() {
-        srl.setRefreshing(true);
+
         HttpUtils.getInstance(mActivity.getApplicationContext()).GET(API.TOUTIAO + "&type=" + type, new HttpUtils.OnOkHttpCallback() {
             @Override
             public void onSuccess(String body) {
@@ -176,7 +154,7 @@ public class TtChildFragment extends BaseFragment {
                                 layout.setVisibility(View.GONE);
                                 setData8();
                             } else {
-                                srl.setRefreshing(false);
+
                                 layout.setVisibility(View.VISIBLE);
                             }
 
@@ -192,7 +170,7 @@ public class TtChildFragment extends BaseFragment {
                 mActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        srl.setRefreshing(false);
+
                     }
                 });
             }
@@ -229,14 +207,14 @@ public class TtChildFragment extends BaseFragment {
                             show("没有更多数据了..");
                             //刷新适配器
                             mAdapter.notifyDataSetChanged();
-                            child_pb.setVisibility(View.GONE);
+                            listView.loadMoreComplete();
                             return;
                         }
                     }
                 }
                 //刷新适配器
                 mAdapter.notifyDataSetChanged();
-                child_pb.setVisibility(View.GONE);
+                listView.loadMoreComplete();
             }
         }, 1200);
     }
@@ -255,7 +233,6 @@ public class TtChildFragment extends BaseFragment {
 
         //刷新适配器
         mAdapter.notifyDataSetChanged();
-        child_pb.setVisibility(View.GONE);
-        srl.setRefreshing(false);
+        listView.refreshComplete();
     }
 }

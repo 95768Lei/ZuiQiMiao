@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/ccc_gray"
     android:clickable="true"
+    android:fitsSystemWindows="true"
     tools:context="com.zl.project.fisrt_project.UI.Activity.LuckActivity">
 
     <include

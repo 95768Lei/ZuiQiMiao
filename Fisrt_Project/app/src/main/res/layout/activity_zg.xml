@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/zg"
+    android:fitsSystemWindows="true"
     tools:context="com.zl.project.fisrt_project.UI.Activity.ZGActivity">
 
     <include

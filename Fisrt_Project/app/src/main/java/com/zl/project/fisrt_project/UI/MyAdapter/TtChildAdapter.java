@@ -2,16 +2,17 @@ package com.zl.project.fisrt_project.UI.MyAdapter;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zl.project.fisrt_project.Mode.TtBean;
 import com.zl.project.fisrt_project.R;
 import com.zl.project.fisrt_project.Utils.ImageUtils;
+import com.zl.project.fisrt_project.Utils.OnRecyclerItemClickListener;
 
 import java.util.List;
 
@@ -19,61 +20,61 @@ import java.util.List;
  * Created by Administrator on 2016/12/6.
  */
 
-public class TtChildAdapter extends BaseAdapter {
+public class TtChildAdapter extends RecyclerView.Adapter<TtChildAdapter.TtChildHolder> {
 
     private Context context;
-    private Fragment fragment;
     private List<TtBean> list;
+    private Fragment fragment;
+    private OnRecyclerItemClickListener listener;
 
-    public TtChildAdapter(Context context, Fragment fragment, List<TtBean> list) {
+    public void setOnRecyclerItemClickListener(OnRecyclerItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public TtChildAdapter(Context context, List<TtBean> list, Fragment fragment) {
         this.context = context;
-        this.fragment = fragment;
         this.list = list;
+        this.fragment = fragment;
     }
 
     @Override
-    public int getCount() {
+    public TtChildHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.tt_child_item, parent, false);
+        return new TtChildHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(TtChildHolder holder, final int position) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listener != null) {
+                    listener.onItemClick(position);
+                }
+            }
+        });
+        holder.title.setText(list.get(position).getTitle());
+        holder.name.setText(list.get(position).getAuthor_name());
+        ImageUtils.LoadImageUrl(list.get(position).getThumbnail_pic_s03(), fragment, holder.icon);
+    }
+
+    @Override
+    public int getItemCount() {
         return list == null ? 0 : list.size();
     }
 
-    @Override
-    public Object getItem(int i) {
-        return list.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        TtChildViewHolder holder;
-        if (view == null) {
-            holder = new TtChildViewHolder();
-            view = LayoutInflater.from(context).inflate(R.layout.tt_child_item, viewGroup, false);
-            holder.name = (TextView) view.findViewById(R.id.tt_child_name);
-            holder.title = (TextView) view.findViewById(R.id.tt_child_title);
-            holder.icon = (ImageView) view.findViewById(R.id.tt_child_icon);
-            view.setTag(holder);
-        } else {
-            holder = (TtChildViewHolder) view.getTag();
-        }
-
-        //绑定数据
-        holder.title.setText(list.get(i).getTitle());
-        String author_name = list.get(i).getAuthor_name();
-        if (author_name.equals("中央人民广播电台")) {
-            author_name = "广播电台";
-        }
-        holder.name.setText(author_name);
-        ImageUtils.LoadImageUrl(list.get(i).getThumbnail_pic_s03(), fragment, holder.icon);
-        return view;
-    }
-
-    public class TtChildViewHolder {
+    public class TtChildHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView title;
         ImageView icon;
+
+        public TtChildHolder(View itemView) {
+            super(itemView);
+            name = (TextView) itemView.findViewById(R.id.tt_child_name);
+            title = (TextView) itemView.findViewById(R.id.tt_child_title);
+            icon = (ImageView) itemView.findViewById(R.id.tt_child_icon);
+        }
     }
+
+
 }

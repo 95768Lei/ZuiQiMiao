@@ -2,20 +2,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/tt_child_srl"
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/tt_child_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/ccc_gray">
-
-        <ListView
-            android:id="@+id/tt_child_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@color/white"
-            android:dividerHeight="0dp"></ListView>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_marginTop="8dp"></com.jcodecraeer.xrecyclerview.XRecyclerView>
 
     <ProgressBar
         android:id="@+id/child_pb"

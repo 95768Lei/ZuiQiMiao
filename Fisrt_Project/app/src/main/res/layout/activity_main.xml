@@ -4,45 +4,51 @@
     android:id="@+id/main_draw"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
 
     <!--主题内容布局-->
-    <com.zhy.autolayout.AutoRelativeLayout
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/main_tab"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            app:tabIndicatorColor="@color/white"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/cc_gray"></android.support.design.widget.TabLayout>
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/main_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"></android.support.v7.widget.Toolbar>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/main_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="@color/white"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/cc_gray"></android.support.design.widget.TabLayout>
+
+        </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/main_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/main_tab"></android.support.v4.view.ViewPager>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v4.view.ViewPager>
 
-        <RelativeLayout
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/main_rl_share"
-            android:layout_width="80px"
-            android:layout_height="80px"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="30px"
-            android:layout_marginRight="30px"
-            android:background="@drawable/main_share_bg_selector"
-            android:padding="8px">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@android:drawable/ic_menu_share" />
-        </RelativeLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="@color/colorPrimary"
+            app:rippleColor="@color/blue"
+            app:srcCompat="@android:drawable/ic_menu_share" />
 
         <RelativeLayout
             android:id="@+id/main_parent_rl"
@@ -51,7 +57,7 @@
 
         </RelativeLayout>
 
-    </com.zhy.autolayout.AutoRelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
     <!--侧滑菜单-->
     <android.support.design.widget.NavigationView

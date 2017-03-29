@@ -3,38 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-        <com.zhy.autolayout.AutoRelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="90px"
-            android:background="@color/colorPrimaryDark">
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90px"
+        android:background="@color/colorPrimaryDark">
 
-            <ImageView
-                android:id="@+id/base_title_black"
-                android:layout_width="65px"
-                android:layout_height="65px"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8px"
-                android:src="@mipmap/black" />
+        <ImageView
+            android:id="@+id/base_title_black"
+            android:layout_width="65px"
+            android:layout_height="65px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8px"
+            android:src="@mipmap/black" />
 
-            <TextView
-                android:id="@+id/base_title_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/title_name"
-                android:textColor="@color/white"
-                android:textSize="@dimen/base_title_text_size" />
+        <TextView
+            android:id="@+id/base_title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/title_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/base_title_text_size" />
 
-            <TextView
-                android:id="@+id/base_title_text_rigth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15px"
-                android:textColor="@color/white"
-                android:textSize="32px" />
+        <TextView
+            android:id="@+id/base_title_text_rigth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15px"
+            android:textColor="@color/white"
+            android:textSize="32px" />
 
-        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
 
 </com.zhy.autolayout.AutoRelativeLayout>
