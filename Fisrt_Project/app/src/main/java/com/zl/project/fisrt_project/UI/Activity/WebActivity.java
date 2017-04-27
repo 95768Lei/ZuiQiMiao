@@ -1,11 +1,10 @@
-package com.zl.project.fisrt_project.UI.Fragment;
+package com.zl.project.fisrt_project.UI.Activity;
 
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -14,40 +13,29 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.zhy.autolayout.AutoRelativeLayout;
-import com.zl.project.fisrt_project.Base.BaseFragment;
+import com.zl.project.fisrt_project.Base.BaseActivity;
 import com.zl.project.fisrt_project.R;
 import com.zl.project.fisrt_project.Utils.AdvertManager;
 
 /**
- * @author zhanglei
- * @date 16/12/7
- * 加载网页的Fragment
+ * Created by zhanglei on 2017/4/27.
  */
-public class WebFragment extends BaseFragment implements View.OnClickListener {
 
+public class WebActivity extends BaseActivity {
 
     private WebView webView;
     private ImageView back;
     private TextView title_name;
     private ProgressBar pb;
-    private AutoRelativeLayout arl;
     private RelativeLayout layout;
 
-    public WebFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_web, container, false);
-        initView(view);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_web);
+        initView();
         initData();
         initListener();
-        return view;
     }
 
     @Override
@@ -75,27 +63,25 @@ public class WebFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initData() {
-        Bundle bundle = getArguments();
-        String url = bundle.getString("url");
+        Intent intent = getIntent();
+        String url = intent.getStringExtra("url");
         if (url != null) {
             Log.e("url==", url);
             webView.loadUrl(url);
         }
     }
 
-    private void initView(View view) {
+    private void initView() {
 
         webView = new WebView(mActivity.getApplicationContext());
-        pb = (ProgressBar) view.findViewById(R.id.web_pb);
-        layout = (RelativeLayout) view.findViewById(R.id.web_layout);
+        pb = (ProgressBar) findViewById(R.id.web_pb);
+        layout = (RelativeLayout) findViewById(R.id.web_layout);
         layout.addView(webView);
-
-        arl = (AutoRelativeLayout) view.findViewById(R.id.web_arl);
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
 
-        View title = view.findViewById(R.id.web_title);
+        View title = findViewById(R.id.web_title);
         back = (ImageView) title.findViewById(R.id.base_title_black);
         title_name = (TextView) title.findViewById(R.id.base_title_name);
         title_name.setText("资讯");

@@ -1,9 +1,9 @@
 package com.zl.project.fisrt_project.UI.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import com.zhy.autolayout.AutoRelativeLayout;
 import com.zl.project.fisrt_project.Base.BaseFragment;
 import com.zl.project.fisrt_project.Mode.TtBean;
 import com.zl.project.fisrt_project.R;
+import com.zl.project.fisrt_project.UI.Activity.WebActivity;
 import com.zl.project.fisrt_project.UI.MyAdapter.TtChildAdapter;
 import com.zl.project.fisrt_project.Utils.API;
 import com.zl.project.fisrt_project.Utils.HttpUtils;
@@ -30,7 +31,9 @@ import java.util.List;
 import okhttp3.Request;
 
 /**
- * A simple {@link Fragment} subclass.
+ * @author zhanglei
+ * @date 17/04/27
+ * 新闻列表页
  */
 public class TtChildFragment extends BaseFragment {
 
@@ -45,19 +48,6 @@ public class TtChildFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
 
-    }
-
-    /**
-     * item项的回调接口
-     */
-    public interface TtChildOnClickListener {
-        void OnItemClick(String url);
-    }
-
-    private TtChildOnClickListener listener;
-
-    public void setChildClick(TtChildOnClickListener listener) {
-        this.listener = listener;
     }
 
     public static TtChildFragment newInstance(String type) {
@@ -89,9 +79,9 @@ public class TtChildFragment extends BaseFragment {
         mAdapter.setOnRecyclerItemClickListener(new OnRecyclerItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                if (listener != null) {
-                    listener.OnItemClick(mList.get(position).getUrl());
-                }
+                Intent intent = new Intent(mActivity, WebActivity.class);
+                intent.putExtra("url", mList.get(position).getUrl());
+                mActivity.startActivity(intent);
             }
         });
 

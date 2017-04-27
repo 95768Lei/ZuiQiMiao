@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
+import com.zl.project.fisrt_project.Base.BaseActivity;
 import com.zl.project.fisrt_project.R;
 import com.zl.project.fisrt_project.Utils.API;
 
@@ -18,7 +20,7 @@ import com.zl.project.fisrt_project.Utils.API;
  * @date 16/12/23
  * 启动页
  */
-public class LaunchActivity extends Activity implements SplashADListener {
+public class LaunchActivity extends BaseActivity implements SplashADListener {
 
     private RelativeLayout arl;
     private TextView launch_text;
@@ -107,5 +109,10 @@ public class LaunchActivity extends Activity implements SplashADListener {
         } else {
             canJump = true;
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

@@ -47,13 +47,14 @@ public class ZGActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_zg);
+        initView();
+        initData();
+        initListener();
     }
 
-    @Override
-    public void initView() {
-        setContentView(R.layout.activity_zg);
 
+    public void initView() {
         View title = findViewById(R.id.zg_title);
         black = (ImageView) title.findViewById(R.id.base_title_black);
         title_name = (TextView) title.findViewById(R.id.base_title_name);
@@ -87,14 +88,13 @@ public class ZGActivity extends BaseActivity {
         bannerView.destroy();
     }
 
-    @Override
+
     public void initData() {
         if (mList != null) {
             mList.clear();
         }
     }
 
-    @Override
     public void initListener() {
         black.setOnClickListener(this);
         text_rigth.setOnClickListener(this);

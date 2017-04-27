@@ -1,10 +1,8 @@
-package com.zl.project.fisrt_project.UI.Fragment;
-
+package com.zl.project.fisrt_project.UI.Activity;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -13,7 +11,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.qq.e.ads.banner.BannerView;
-import com.zl.project.fisrt_project.Base.BaseFragment;
+import com.zl.project.fisrt_project.Base.BaseActivity;
 import com.zl.project.fisrt_project.Mode.PhoneBean;
 import com.zl.project.fisrt_project.R;
 import com.zl.project.fisrt_project.Utils.API;
@@ -30,14 +28,12 @@ import java.util.List;
 
 import okhttp3.Request;
 
-
 /**
- * @author zhanglei
- * @date 16/12/21
+ * Created by zhanglei on 2017/4/27.
  * 手机号查询
  */
-public class PhoneCheckFragment extends BaseFragment {
 
+public class PhoneCheckActivity extends BaseActivity {
 
     private ImageView black;
     private TextView title_name;
@@ -49,19 +45,14 @@ public class PhoneCheckFragment extends BaseFragment {
     private RelativeLayout layout;
     private BannerView bannerView;
 
-    public PhoneCheckFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_wd, container, false);
-        initView(view);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_wd);
+
+        initView();
+        initData();
         initListener();
-        return view;
     }
 
     private void initListener() {
@@ -84,17 +75,17 @@ public class PhoneCheckFragment extends BaseFragment {
         adapter.notifyDataSetChanged();
     }
 
-    private void initView(View view) {
-        View title = view.findViewById(R.id.phone_title);
+    private void initView() {
+        View title = findViewById(R.id.phone_title);
         black = (ImageView) title.findViewById(R.id.base_title_black);
         title_name = (TextView) title.findViewById(R.id.base_title_name);
         title_name.setText("手机号码查询");
         text_rigth = (TextView) title.findViewById(R.id.base_title_text_rigth);
         text_rigth.setText(R.string.cx);
 
-        edit = (EditText) view.findViewById(R.id.phone_edit);
-        list_view = (ListView) view.findViewById(R.id.phone_list);
-        layout = (RelativeLayout) view.findViewById(R.id.phone_layout);
+        edit = (EditText) findViewById(R.id.phone_edit);
+        list_view = (ListView) findViewById(R.id.phone_list);
+        layout = (RelativeLayout) findViewById(R.id.phone_layout);
 
         adapter = new UniversalAdapter<String>(mActivity, list, R.layout.luck_list_item) {
             @Override

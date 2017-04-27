@@ -53,11 +53,14 @@ public class XHActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_xh);
+        initView();
+        initData();
+        initListener();
     }
 
-    @Override
     public void initView() {
-        setContentView(R.layout.activity_xh);
+
         times = getTiems();
 
         View title = findViewById(R.id.xh_title);
@@ -86,7 +89,7 @@ public class XHActivity extends BaseActivity {
 
     }
 
-    @Override
+
     public void initData() {
         page = 1;
         if (mList != null) {
@@ -135,7 +138,6 @@ public class XHActivity extends BaseActivity {
         });
     }
 
-    @Override
     public void initListener() {
         black.setOnClickListener(this);
         srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

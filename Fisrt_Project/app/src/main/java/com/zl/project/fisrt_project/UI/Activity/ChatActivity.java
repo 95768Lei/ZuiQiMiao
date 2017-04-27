@@ -1,19 +1,16 @@
-package com.zl.project.fisrt_project.UI.Fragment;
-
+package com.zl.project.fisrt_project.UI.Activity;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zl.project.fisrt_project.Base.BaseFragment;
+import com.zl.project.fisrt_project.Base.BaseActivity;
 import com.zl.project.fisrt_project.Mode.ChatBean;
 import com.zl.project.fisrt_project.R;
 import com.zl.project.fisrt_project.Utils.API;
@@ -30,10 +27,11 @@ import java.util.List;
 import okhttp3.Request;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by zhanglei on 2017/4/27.
+ * 聊天机器人
  */
-public class ChatFragment extends BaseFragment {
 
+public class ChatActivity extends BaseActivity {
 
     private EditText send_edit;
     private TextView send_text, title_name;
@@ -42,19 +40,12 @@ public class ChatFragment extends BaseFragment {
     private List<ChatBean> mList = new ArrayList<>();
     private UniversalAdapter<ChatBean> adapter;
 
-    public ChatFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_chat, container, false);
-        initView(view);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_chat);
+        initView();
         initListener();
-        return view;
     }
 
     private void initListener() {
@@ -64,17 +55,15 @@ public class ChatFragment extends BaseFragment {
 
     /**
      * 初始化View
-     *
-     * @param view
      */
-    private void initView(View view) {
-        View title = view.findViewById(R.id.chat_title);
+    private void initView() {
+        View title = findViewById(R.id.chat_title);
         black = (ImageView) title.findViewById(R.id.base_title_black);
         title_name = (TextView) title.findViewById(R.id.base_title_name);
         title_name.setText("聊天机器人");
-        send_edit = (EditText) view.findViewById(R.id.chat_send_edit);
-        send_text = (TextView) view.findViewById(R.id.send_text);
-        listView = (ListView) view.findViewById(R.id.chat_list);
+        send_edit = (EditText) findViewById(R.id.chat_send_edit);
+        send_text = (TextView) findViewById(R.id.send_text);
+        listView = (ListView) findViewById(R.id.chat_list);
 
         final ChatBean bean = new ChatBean();
         bean.setText("欢迎来到聊天室..");

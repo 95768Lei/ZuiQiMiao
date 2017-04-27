@@ -21,15 +21,12 @@ import android.view.WindowManager;
 
 import com.zl.project.fisrt_project.Base.BaseActivity;
 import com.zl.project.fisrt_project.R;
-import com.zl.project.fisrt_project.UI.Fragment.ChatFragment;
-import com.zl.project.fisrt_project.UI.Fragment.PhoneCheckFragment;
 import com.zl.project.fisrt_project.UI.Fragment.TtChildFragment;
-import com.zl.project.fisrt_project.UI.Fragment.WebFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements TtChildFragment.TtChildOnClickListener {
+public class MainActivity extends BaseActivity {
 
     private NavigationView nv;
     private DrawerLayout draw;
@@ -46,6 +43,10 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initView();
+        initData();
+        initListener();
     }
 
     @Override
@@ -56,9 +57,8 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
         }
     }
 
-    @Override
     public void initView() {
-        setContentView(R.layout.activity_main);
+
         main_toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         main_toolbar.setNavigationIcon(R.mipmap.app_icon);
         main_toolbar.setTitle(R.string.app_name);
@@ -94,22 +94,20 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
         tt_pager.setAdapter(adapter);
     }
 
-    @Override
+
     public void initData() {
         int length = name.length;
         for (int i = 0; i < length; i++) {
             TabLayout.Tab tab = tt_tab.newTab();
             tab.setText(name[i]);
             tt_tab.addTab(tab);
-            TtChildFragment ttChildFragment = TtChildFragment.newInstance(type[i]);
-            ttChildFragment.setChildClick(this);
-            mList.add(ttChildFragment);
+            mList.add(TtChildFragment.newInstance(type[i]));
         }
 
         adapter.notifyDataSetChanged();
     }
 
-    @Override
+
     public void initListener() {
 
         tt_pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tt_tab));
@@ -146,11 +144,11 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
                         break;
                     //手机归属地查询
                     case R.id.phone_check:
-                        startFragment(new PhoneCheckFragment(), R.id.main_parent_rl);
+                        openPhoneCheck();
                         break;
                     //邮票查询
                     case R.id.chat_robot:
-                        startFragment(new ChatFragment(), R.id.main_parent_rl);
+                        openChatActivity();
                         break;
                     //星座运势
                     case R.id.luck:
@@ -175,6 +173,32 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
         fab_share.setOnClickListener(this);
     }
 
+    /**
+     * 打开机器人界面
+     */
+    private void openChatActivity() {
+        draw.closeDrawers();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(mActivity, ChatActivity.class));
+            }
+        }, 200);
+    }
+
+    /**
+     * 打开手机号查询页
+     */
+    private void openPhoneCheck() {
+        draw.closeDrawers();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(mActivity, PhoneCheckActivity.class));
+            }
+        }, 200);
+
+    }
 
     @Override
     public void onClick(View view) {
@@ -240,22 +264,6 @@ public class MainActivity extends BaseActivity implements TtChildFragment.TtChil
                 startActivity(new Intent(mActivity, ZGActivity.class));
             }
         }, 200);
-    }
-
-    /**
-     * 打开资讯详情页的回调接口
-     *
-     * @param url
-     */
-    @Override
-    public void OnItemClick(String url) {
-        if (url != null) {
-            WebFragment webFragment = new WebFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString("url", url);
-            webFragment.setArguments(bundle);
-            addFragment(webFragment, R.id.main_parent_rl);
-        }
     }
 
     @Override

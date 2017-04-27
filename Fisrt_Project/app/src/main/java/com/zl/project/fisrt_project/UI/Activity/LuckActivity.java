@@ -49,12 +49,14 @@ public class LuckActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_luck);
+        initView();
+        initData();
+        initListener();
     }
 
-    @Override
     public void initView() {
-        setContentView(R.layout.activity_luck);
+
         View title = findViewById(R.id.luck_title);
         black = (ImageView) title.findViewById(R.id.base_title_black);
         title_name = (TextView) title.findViewById(R.id.base_title_name);
@@ -93,7 +95,7 @@ public class LuckActivity extends BaseActivity {
         bannerView.destroy();
     }
 
-    @Override
+
     public void initData() {
         if (list != null) {
             list.clear();
@@ -102,7 +104,7 @@ public class LuckActivity extends BaseActivity {
         adapter.notifyDataSetChanged();
     }
 
-    @Override
+
     public void initListener() {
         black.setOnClickListener(this);
         title_right_text.setOnClickListener(this);
@@ -192,7 +194,8 @@ public class LuckActivity extends BaseActivity {
         list.add("工作指数：" + luckBean.getWork());
         list.add("幸运数字：" + luckBean.getNumber());
         list.add("速配星座：" + luckBean.getQFriend());
-        list.add("运气概述：" + luckBean.getSummary());;
+        list.add("运气概述：" + luckBean.getSummary());
+        ;
         return list;
     }
 

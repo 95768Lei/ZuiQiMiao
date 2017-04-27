@@ -36,9 +36,6 @@ public abstract class BaseActivity extends AutoLayoutActivity implements View.On
         mActivity = this;
         dialog = new ProgressDialog(mActivity);
         dialog.setMessage("加载中...");
-        initView();
-        initData();
-        initListener();
     }
 
     /**
@@ -63,21 +60,6 @@ public abstract class BaseActivity extends AutoLayoutActivity implements View.On
     protected void show(String message) {
         Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
     }
-
-    /**
-     * 初始化数据
-     */
-    public abstract void initView();
-
-    /**
-     * 初始化数据
-     */
-    public abstract void initData();
-
-    /**
-     * 初始化监听
-     */
-    public abstract void initListener();
 
     /**
      * 加载Fragment
@@ -146,7 +128,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements View.On
             if (manager.getBackStackEntryCount() > 0) {
                 manager.popBackStack();
             } else {
-                setBlackAnimation();
+                finish();
             }
 
         }

@@ -83,6 +83,15 @@
             </intent-filter>
         </activity>
 
+        <!--资讯详情页-->
+        <activity android:name=".UI.Activity.WebActivity"/>
+
+        <!--聊天机器人-->
+        <activity android:name=".UI.Activity.ChatActivity"/>
+
+        <!--手机号查询-->
+        <activity android:name=".UI.Activity.PhoneCheckActivity"/>
+
         <!-- Rich push 核心功能 since 2.0.6 -->
         <activity
             android:name="cn.jpush.android.ui.PopWinActivity"
